@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beratung Blickwinkel | Systemische Praxis Münster & LGBTQ+ Safe Space</title>
-    <meta name="description" content="Klarheit, Verbindung & neue Perspektiven. Beratung Blickwinkel in Münster für Paare & queere Menschen. Dein sicherer Raum für Veränderung.">
+    <title>Queere Beratung Münster | LGBTQ+ Safe Space & Systemische Therapie</title>
+    <meta name="description" content="Spezialisierte systemische Beratung für queere Menschen in Münster. Begleitung bei Coming-out, Transition, Polyamorie & queeren Beziehungen. Dein Safe Space.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,18 +15,15 @@
     <style>
         /* --- DESIGN SYSTEM & VARIABLEN --- */
         :root {
-            /* Farben (Pastell & Warm) */
-            --bg-color: #FAF9F6;       /* Warmes Off-White */
-            --text-main: #333333;      /* Fast Schwarz für Lesbarkeit */
-            --accent-peach: #E8B4A6;   /* Sanftes Pfirsich (Paartherapie/Wärme) */
-            --accent-sage: #C5D0BA;    /* Gedecktes Salbei (LGBTQ+/Ruhe) */
-            --box-color: #FFFFFF;      /* Reinweiß für Kontrast-Elemente */
+            --bg-color: #FAF9F6;       
+            --text-main: #333333;      
+            --accent-peach: #E8B4A6;   
+            --accent-sage: #C5D0BA;    
+            --box-color: #FFFFFF;      
             
-            /* Schriften */
             --font-heading: 'Lora', serif;
             --font-body: 'Inter', sans-serif;
             
-            /* Abstände */
             --spacing-s: 1rem;
             --spacing-m: 2rem;
             --spacing-l: 4rem;
@@ -50,6 +47,7 @@
         h2 { font-size: 2.2rem; margin-bottom: var(--spacing-m); }
         p { margin-bottom: var(--spacing-m); font-size: 1.1rem; }
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        strong { font-weight: 600; color: #111; }
 
         /* --- HEADER & BURGER BUTTON --- */
         header {
@@ -59,91 +57,43 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 2000; /* Muss über dem Overlay liegen */
-            mix-blend-mode: difference; /* Sorgt dafür, dass Logo/Button auf jedem Hintergrund lesbar bleiben */
+            z-index: 2000; 
+            mix-blend-mode: difference; 
             color: #fff;
         }
 
         .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 500; letter-spacing: 1px; }
         .logo span { color: var(--accent-peach); }
 
-        /* Der elegante Burger-Button */
         .burger-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            width: 40px;
-            z-index: 2000;
+            background: none; border: none; cursor: pointer;
+            display: flex; flex-direction: column; gap: 8px; width: 40px; z-index: 2000;
         }
-
-        .burger-btn .line {
-            display: block;
-            width: 100%;
-            height: 2px;
-            background-color: #fff;
-            transition: transform 0.4s ease, opacity 0.4s ease;
-        }
-
-        /* Animation für das 'X' beim Klicken */
+        .burger-btn .line { display: block; width: 100%; height: 2px; background-color: #fff; transition: transform 0.4s ease, opacity 0.4s ease; }
         .burger-btn.active .line:nth-child(1) { transform: translateY(10px) rotate(45deg); }
         .burger-btn.active .line:nth-child(2) { transform: translateY(-10px) rotate(-45deg); }
 
         /* --- FULLSCREEN OVERLAY MENÜ --- */
         .overlay-menu {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100vh;
-            background-color: var(--text-main); /* Dunkler, beruhigender Hintergrund für Kontrast */
-            color: var(--bg-color);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 10%;
-            visibility: hidden; /* Wird via JS gesteuert */
-            opacity: 0;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: var(--text-main); color: var(--bg-color);
+            z-index: 1000; display: flex; flex-direction: column; justify-content: center;
+            padding: 0 10%; visibility: hidden; opacity: 0;
         }
-
         .nav-links { list-style: none; }
         .nav-links li { overflow: hidden; margin-bottom: 1.5rem; }
-        
-        .nav-links a {
-            font-family: var(--font-heading);
-            font-size: 4rem; /* Riesige, elegante Schrift */
-            display: inline-block;
-            position: relative;
-        }
-
-        /* Hover-Effekt: Pastell-Linie streicht durchs Wort */
+        .nav-links a { font-family: var(--font-heading); font-size: 4rem; display: inline-block; position: relative; }
         .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0; height: 4px;
-            background-color: var(--accent-peach);
-            bottom: 20%; left: 0;
-            transition: width 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-            z-index: -1;
+            content: ''; position: absolute; width: 0; height: 4px;
+            background-color: var(--accent-peach); bottom: 20%; left: 0;
+            transition: width 0.4s cubic-bezier(0.77, 0, 0.175, 1); z-index: -1;
         }
         .nav-links a:hover::after { width: 100%; }
         .nav-links a.active { color: var(--accent-sage); }
-
-        .menu-footer {
-            margin-top: 4rem;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.5);
-            opacity: 0; /* JS Animation */
-        }
+        .menu-footer { margin-top: 4rem; font-size: 0.9rem; color: rgba(255,255,255,0.5); opacity: 0; }
 
         /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 10%;
-        }
-
+        .hero { height: 100vh; display: flex; align-items: center; padding: 0 10%; }
         .hero-content { max-width: 700px; margin-top: 50px;}
         .hero h1 span { color: var(--accent-sage); font-style: normal; }
         .hero-sub { font-size: 1.3rem; color: #666; margin-bottom: var(--spacing-l); }
@@ -151,12 +101,9 @@
         /* --- ANIMATION KÄSTCHEN --- */
         .box-animation-container { display: flex; gap: 15px; margin-bottom: var(--spacing-l); }
         .box-char {
-            width: 70px; height: 70px;
-            background-color: var(--box-color);
-            border: 1px solid rgba(0,0,0,0.08);
-            display: flex; align-items: center; justify-content: center;
-            position: relative;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            width: 70px; height: 70px; background-color: var(--box-color);
+            border: 1px solid rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center;
+            position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
         .box-char .letter { font-family: var(--font-heading); font-size: 2.5rem; opacity: 0; color: #333; }
         .pointer-line {
@@ -171,9 +118,20 @@
         }
         .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(232, 180, 166, 0.3); }
 
+        /* --- SEO TEXT BLOCK (Menschlich & Relevant) --- */
+        .seo-intro {
+            padding: var(--spacing-xl) 10%;
+            background-color: white;
+            text-align: center;
+        }
+        .seo-intro-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .seo-intro h2 { color: var(--accent-sage); font-size: 1.8rem; }
+
         /* --- SCHWERPUNKTE --- */
-        .services { padding: var(--spacing-xl) 10%; background-color: white; }
-        .services h2 { color: #333; }
+        .services { padding: var(--spacing-l) 10% var(--spacing-xl); background-color: white; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-l); }
         .service-card { background: var(--bg-color); padding: var(--spacing-m); border-radius: 10px; transition: transform 0.3s ease; }
         .service-card:hover { transform: translateY(-5px); }
@@ -187,15 +145,13 @@
             padding: var(--spacing-l) 10%;
             background: var(--bg-color);
             border-top: 1px solid rgba(0,0,0,0.05);
-            text-align: center;
-            font-size: 0.9rem;
-            color: #888;
+            text-align: center; font-size: 0.9rem; color: #888;
         }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            .nav-links a { font-size: 2.5rem; }
+            .nav-links a { font-size: 2.2rem; }
             .box-animation-container { gap: 8px; }
             .box-char { width: 50px; height: 50px; }
             .box-char .letter { font-size: 1.8rem; }
@@ -216,9 +172,9 @@
         <ul class="nav-links">
             <li><a href="index.html" class="active">Startseite</a></li>
             <li><a href="ueber-mich.html">Über mich</a></li>
-            <li><a href="paartherapie.html">Paartherapie</a></li>
-            <li><a href="lgbtq.html">LGBTQ+ Safe Space</a></li>
-            <li><a href="kontakt.html">Kontakt & Ablauf</a></li>
+            <li><a href="identitaet.html">Identität & Transition</a></li>
+            <li><a href="queere-beziehungen.html">Queere Beziehungen</a></li>
+            <li><a href="kontakt.html">Kontakt & Safe Space</a></li>
         </ul>
         <div class="menu-footer">
             <p>Hafenweg, 48155 Münster | Termine nur nach Vereinbarung</p>
@@ -233,37 +189,47 @@
                 <div class="box-char"><div class="letter">U</div><div class="pointer-line"></div></div>
                 <div class="box-char"><div class="letter">M</div><div class="pointer-line"></div></div>
             </div>
-            <h1 id="heroHeadline">Keine Schubladen. <br>Nur <span>Räume.</span></h1>
-            <p class="hero-sub" id="heroSubtext">Systemische Beratung in Münster für Menschen, die neue Wege der Verbindung suchen – zu sich selbst und zueinander.</p>
+            <h1 id="heroHeadline">Keine Erklärungsnot. <br>Nur <span>Safe Space.</span></h1>
+            <p class="hero-sub" id="heroSubtext">Spezialisierte systemische Beratung exklusiv für die LGBTQ+ Community in Münster. Für deinen Weg, deine Identität und queere Lebensrealitäten.</p>
             <a href="kontakt.html" class="cta-button" id="heroCta">Erstgespräch vereinbaren</a>
         </div>
     </section>
 
+    <section class="seo-intro">
+        <div class="seo-intro-content">
+            <h2>Beratung auf Augenhöhe. Ohne Schubladen.</h2>
+            <p>Es macht einen gewaltigen Unterschied, ob du in einer Therapie erst Begriffe wie <em>non-binär</em>, <em>Polyamorie</em> oder <em>Minority Stress</em> erklären musst – oder ob du einfach ankommen darfst. Als spezialisierte <strong>queere Beratung in Münster</strong> biete ich Menschen aus dem LGBTQ+ Spektrum systemische Begleitung, die deine Lebensrealität als Fundament begreift, nicht als Symptom.</p>
+            <p>Egal, ob du mitten im <strong>Coming-out</strong> steckst, eine <strong>Transition</strong> durchläufst oder als <strong>queeres Paar</strong> nach neuen Wegen der Kommunikation sucht: Hier gibt es keine Normativität. Nur dich, dein System und den Raum, festgefahrene Blickwinkel zu verändern.</p>
+        </div>
+    </section>
+
     <section class="services">
-        <h2>Schwerpunkte der Praxis</h2>
         <div class="services-grid">
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1516534665133-15777478051a?q=80&w=600&auto=format&fit=crop');"></div>
-                <h3>Ehrliche <br><span>Beziehungen</span></h3>
-                <p>Wenn Sprachlosigkeit den Alltag dominiert. In der Paartherapie brechen wir alte Muster auf und schaffen Raum für echtes Verstehen, ohne Schuldzuweisungen.</p>
-                <a href="paartherapie.html" class="cta-button" style="background-color: var(--accent-sage);">Mehr erfahren</a>
-            </div>
+            
             <div class="service-card">
                 <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1628172828591-64b5956a1b2b?q=80&w=600&auto=format&fit=crop');"></div>
-                <h3>Gelebte <br><span>Identität</span></h3>
-                <p>Coming-out, Transition oder Beziehungsfragen in queeren Lebensrealitäten: Ein dezidierter Safe Space. Hier musst du dich nicht erklären, hier darfst du sein.</p>
-                <a href="lgbtq.html" class="cta-button" style="background-color: var(--accent-sage);">Safe Space betreten</a>
+                <h3>Identität & <br><span>Coming-out</span></h3>
+                <p>Der Weg zu sich selbst kann befreiend, aber auch extrem überfordernd sein. Ich begleite dich bei inneren und äußeren Coming-outs, Fragen zur Geschlechtsidentität (Trans*, Non-Binär) und beim Umgang mit familiären oder gesellschaftlichen Hürden.</p>
+                <a href="identitaet.html" class="cta-button" style="background-color: var(--accent-sage);">Mehr erfahren</a>
             </div>
+
+            <div class="service-card">
+                <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1516534665133-15777478051a?q=80&w=600&auto=format&fit=crop');"></div>
+                <h3>Queere <br><span>Beziehungen</span></h3>
+                <p>Systemische Paar- und Beziehungsberatung, die über klassische Modelle hinausgeht. Ob Monogamie, Polyamorie oder offene Beziehungskonzepte: Wir brechen toxische Kommunikationsmuster auf und schaffen Raum für echtes Verstehen.</p>
+                <a href="queere-beziehungen.html" class="cta-button" style="background-color: var(--accent-sage);">Mehr erfahren</a>
+            </div>
+
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Beratung Blickwinkel. Alle Rechte vorbehalten.</p>
+        <p>&copy; 2026 Beratung Blickwinkel. Systemische Beratung für queere Menschen.</p>
         <p>Hafenweg, 48155 Münster</p>
     </footer>
 
     <script>
-        // 1. Die Hero-Animation (Kästchen & Text)
+        // Hero-Animation
         const heroTl = gsap.timeline({defaults: {ease: "power3.out"}});
         heroTl.to(".box-char .letter", { opacity: 1, y: 0, startAt: {y: 30}, duration: 1, stagger: 0.2 })
               .to(".pointer-line", { width: "100%", duration: 0.8, stagger: 0.1 }, "-=0.5")
@@ -271,32 +237,28 @@
               .from("#heroSubtext", { opacity: 0, y: 20, duration: 0.8 }, "-=0.6")
               .from("#heroCta", { opacity: 0, scale: 0.9, duration: 0.6 }, "-=0.4");
 
-        // 2. Die Menü-Animation (Overlay & Burger)
+        // Menü-Animation
         const burgerBtn = document.getElementById('burgerBtn');
         const overlayMenu = document.getElementById('overlayMenu');
         let isMenuOpen = false;
 
-        // Timeline für das Menü
         const menuTl = gsap.timeline({ paused: true, defaults: { ease: "power3.inOut" } });
-        
         menuTl.to(overlayMenu, { duration: 0.6, opacity: 1, visibility: "visible" })
-              // Links kommen nacheinander von unten reingeflogen
               .from(".nav-links li", { duration: 0.6, y: 40, opacity: 0, stagger: 0.1 }, "-=0.3")
               .to(".menu-footer", { duration: 0.4, opacity: 1 }, "-=0.2");
 
         burgerBtn.addEventListener('click', () => {
             isMenuOpen = !isMenuOpen;
-            burgerBtn.classList.toggle('active'); // Startet das 'X' CSS
+            burgerBtn.classList.toggle('active'); 
             
             if (isMenuOpen) {
                 menuTl.play();
-                document.body.style.overflow = "hidden"; // Sperrt das Scrollen der Seite im Hintergrund
+                document.body.style.overflow = "hidden"; 
             } else {
                 menuTl.reverse();
-                document.body.style.overflow = "auto"; // Erlaubt Scrollen wieder
+                document.body.style.overflow = "auto"; 
             }
         });
     </script>
 </body>
-  </html>
-  
+</html>
