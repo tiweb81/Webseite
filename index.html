@@ -3,262 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Queere Beratung Münster | LGBTQ+ Safe Space & Systemische Therapie</title>
-    <meta name="description" content="Spezialisierte systemische Beratung für queere Menschen in Münster. Begleitung bei Coming-out, Transition, Polyamorie & queeren Beziehungen. Dein Safe Space.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
+    <title>Grün-West Energie Simulator</title>
     <style>
-        /* --- DESIGN SYSTEM & VARIABLEN --- */
         :root {
-            --bg-color: #FAF9F6;       
-            --text-main: #333333;      
-            --accent-peach: #E8B4A6;   
-            --accent-sage: #C5D0BA;    
-            --box-color: #FFFFFF;      
-            
-            --font-heading: 'Lora', serif;
-            --font-body: 'Inter', sans-serif;
-            
-            --spacing-s: 1rem;
-            --spacing-m: 2rem;
-            --spacing-l: 4rem;
-            --spacing-xl: 8rem;
+            --primary: #008f39; /* Grün-West Grün */
+            --bg-color: #f4f7f6;
+            --text-dark: #333;
+            --box-bg: #ffffff;
         }
-
-        /* --- BASIC RESET --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
+            font-family: Arial, sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--font-body);
-            font-weight: 300;
-            line-height: 1.7;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 20px;
         }
-
-        h1, h2, h3 { font-family: var(--font-heading); font-weight: 400; line-height: 1.3; margin-bottom: var(--spacing-s); }
-        h1 { font-size: 3.5rem; font-style: italic; }
-        h2 { font-size: 2.2rem; margin-bottom: var(--spacing-m); }
-        p { margin-bottom: var(--spacing-m); font-size: 1.1rem; }
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-        strong { font-weight: 600; color: #111; }
-
-        /* --- HEADER & BURGER BUTTON --- */
-        header {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 2000; 
-            mix-blend-mode: difference; 
-            color: #fff;
-        }
-
-        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 500; letter-spacing: 1px; }
-        .logo span { color: var(--accent-peach); }
-
-        .burger-btn {
-            background: none; border: none; cursor: pointer;
-            display: flex; flex-direction: column; gap: 8px; width: 40px; z-index: 2000;
-        }
-        .burger-btn .line { display: block; width: 100%; height: 2px; background-color: #fff; transition: transform 0.4s ease, opacity 0.4s ease; }
-        .burger-btn.active .line:nth-child(1) { transform: translateY(10px) rotate(45deg); }
-        .burger-btn.active .line:nth-child(2) { transform: translateY(-10px) rotate(-45deg); }
-
-        /* --- FULLSCREEN OVERLAY MENÜ --- */
-        .overlay-menu {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background-color: var(--text-main); color: var(--bg-color);
-            z-index: 1000; display: flex; flex-direction: column; justify-content: center;
-            padding: 0 10%; visibility: hidden; opacity: 0;
-        }
-        .nav-links { list-style: none; }
-        .nav-links li { overflow: hidden; margin-bottom: 1.5rem; }
-        .nav-links a { font-family: var(--font-heading); font-size: 4rem; display: inline-block; position: relative; }
-        .nav-links a::after {
-            content: ''; position: absolute; width: 0; height: 4px;
-            background-color: var(--accent-peach); bottom: 20%; left: 0;
-            transition: width 0.4s cubic-bezier(0.77, 0, 0.175, 1); z-index: -1;
-        }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-links a.active { color: var(--accent-sage); }
-        .menu-footer { margin-top: 4rem; font-size: 0.9rem; color: rgba(255,255,255,0.5); opacity: 0; }
-
-        /* --- HERO SECTION --- */
-        .hero { height: 100vh; display: flex; align-items: center; padding: 0 10%; }
-        .hero-content { max-width: 700px; margin-top: 50px;}
-        .hero h1 span { color: var(--accent-sage); font-style: normal; }
-        .hero-sub { font-size: 1.3rem; color: #666; margin-bottom: var(--spacing-l); }
-
-        /* --- ANIMATION KÄSTCHEN --- */
-        .box-animation-container { display: flex; gap: 15px; margin-bottom: var(--spacing-l); }
-        .box-char {
-            width: 70px; height: 70px; background-color: var(--box-color);
-            border: 1px solid rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center;
-            position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-        }
-        .box-char .letter { font-family: var(--font-heading); font-size: 2.5rem; opacity: 0; color: #333; }
-        .pointer-line {
-            position: absolute; height: 2px; background-color: var(--accent-peach);
-            width: 0; bottom: -15px; left: 50%; transform: translateX(-50%);
-        }
-
-        .cta-button {
-            display: inline-block; padding: var(--spacing-s) var(--spacing-m);
-            background-color: var(--accent-peach); color: white;
-            border-radius: 50px; font-weight: 600; transition: all 0.3s ease;
-        }
-        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(232, 180, 166, 0.3); }
-
-        /* --- SEO TEXT BLOCK (Menschlich & Relevant) --- */
-        .seo-intro {
-            padding: var(--spacing-xl) 10%;
-            background-color: white;
-            text-align: center;
-        }
-        .seo-intro-content {
+        .simulator-container {
             max-width: 800px;
             margin: 0 auto;
+            background: var(--box-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        .seo-intro h2 { color: var(--accent-sage); font-size: 1.8rem; }
-
-        /* --- SCHWERPUNKTE --- */
-        .services { padding: var(--spacing-l) 10% var(--spacing-xl); background-color: white; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-l); }
-        .service-card { background: var(--bg-color); padding: var(--spacing-m); border-radius: 10px; transition: transform 0.3s ease; }
-        .service-card:hover { transform: translateY(-5px); }
-        .service-image { width: 100%; height: 250px; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: var(--spacing-m); }
-        .service-card h3 { font-family: var(--font-heading); font-size: 1.6rem; color: #333; }
-        .service-card h3 span { color: var(--accent-sage); }
-        .service-card p { color: #555; }
-
-        /* --- FOOTER --- */
-        footer {
-            padding: var(--spacing-l) 10%;
-            background: var(--bg-color);
-            border-top: 1px solid rgba(0,0,0,0.05);
-            text-align: center; font-size: 0.9rem; color: #888;
+        h2, h3 { color: var(--primary); }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .nav-links a { font-size: 2.2rem; }
-            .box-animation-container { gap: 8px; }
-            .box-char { width: 50px; height: 50px; }
-            .box-char .letter { font-size: 1.8rem; }
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
         }
+        .control-group {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input[type="range"] { width: 100%; margin-bottom: 10px; }
+        .checkbox-group { margin-top: 10px; }
+        .checkbox-group label { font-weight: normal; cursor: pointer; }
+        
+        .results {
+            background: #eaf6ea;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary);
+        }
+        .metric {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .metric span { font-weight: bold; color: var(--primary); }
+        
+        .alert {
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none; /* Versteckt bis gebraucht */
+        }
+        .alert-warning { background: #ffebee; color: #c62828; border-left: 5px solid #c62828; }
+        .alert-success { background: #e8f5e9; color: #2e7d32; border-left: 5px solid #2e7d32; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">Beratung <span>Blickwinkel.</span></div>
-        <button class="burger-btn" id="burgerBtn">
-            <span class="line"></span>
-            <span class="line"></span>
-        </button>
-    </header>
+<div class="simulator-container">
+    <h2>🏡 Grün-West Sanierungs-Fahrplan</h2>
+    <p>Simuliere hier deine hybride Lösung aus Ökonomie und Ökologie für die nächsten Jahre.</p>
 
-    <nav class="overlay-menu" id="overlayMenu">
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Startseite</a></li>
-            <li><a href="ueber-mich.html">Über mich</a></li>
-            <li><a href="identitaet.html">Identität & Transition</a></li>
-            <li><a href="queere-beziehungen.html">Queere Beziehungen</a></li>
-            <li><a href="kontakt.html">Kontakt & Safe Space</a></li>
-        </ul>
-        <div class="menu-footer">
-            <p>Hafenweg, 48155 Münster | Termine nur nach Vereinbarung</p>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div class="hero-content">
-            <div class="box-animation-container" id="heroBoxes">
-                <div class="box-char"><div class="letter">R</div><div class="pointer-line"></div></div>
-                <div class="box-char"><div class="letter">A</div><div class="pointer-line"></div></div>
-                <div class="box-char"><div class="letter">U</div><div class="pointer-line"></div></div>
-                <div class="box-char"><div class="letter">M</div><div class="pointer-line"></div></div>
+    <div class="grid">
+        <div>
+            <div class="control-group">
+                <label for="budget">Verfügbares Budget: <span id="budget-val">50.000</span> €</label>
+                <input type="range" id="budget" min="10000" max="100000" step="5000" value="50000">
+                
+                <label for="jahre" style="margin-top:15px;">Betrachtungszeitraum: <span id="jahre-val">20</span> Jahre</label>
+                <input type="range" id="jahre" min="5" max="30" step="1" value="20">
             </div>
-            <h1 id="heroHeadline">Keine Erklärungsnot. <br>Nur <span>Safe Space.</span></h1>
-            <p class="hero-sub" id="heroSubtext">Spezialisierte systemische Beratung exklusiv für die LGBTQ+ Community in Münster. Für deinen Weg, deine Identität und queere Lebensrealitäten.</p>
-            <a href="kontakt.html" class="cta-button" id="heroCta">Erstgespräch vereinbaren</a>
-        </div>
-    </section>
 
-    <section class="seo-intro">
-        <div class="seo-intro-content">
-            <h2>Beratung auf Augenhöhe. Ohne Schubladen.</h2>
-            <p>Es macht einen gewaltigen Unterschied, ob du in einer Therapie erst Begriffe wie <em>non-binär</em>, <em>Polyamorie</em> oder <em>Minority Stress</em> erklären musst – oder ob du einfach ankommen darfst. Als spezialisierte <strong>queere Beratung in Münster</strong> biete ich Menschen aus dem LGBTQ+ Spektrum systemische Begleitung, die deine Lebensrealität als Fundament begreift, nicht als Symptom.</p>
-            <p>Egal, ob du mitten im <strong>Coming-out</strong> steckst, eine <strong>Transition</strong> durchläufst oder als <strong>queeres Paar</strong> nach neuen Wegen der Kommunikation sucht: Hier gibt es keine Normativität. Nur dich, dein System und den Raum, festgefahrene Blickwinkel zu verändern.</p>
+            <div class="control-group">
+                <h3>Maßnahmen</h3>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="huelle"> 🧱 Thermische Hülle (Dämmung/Fenster)</label><br>
+                    <label><input type="checkbox" id="technik"> ☀️ Anlagentechnik (Wärmepumpe/Solar)</label>
+                </div>
+            </div>
         </div>
-    </section>
 
-    <section class="services">
-        <div class="services-grid">
+        <div>
+            <div class="results">
+                <h3>📊 Deine Ergebnisse</h3>
+                <div class="metric">Investition: <span id="res-invest">0</span> €</div>
+                <div class="metric">Ersparnis pro Jahr: <span id="res-savings">0</span> €</div>
+                <div class="metric">CO2-Reduktion: <span id="res-co2">0</span> t / Jahr</div>
+                <hr>
+                <div class="metric">Amortisation in: <span id="res-amortisation">-</span></div>
+            </div>
+
+            <div id="budget-alert" class="alert"></div>
+            <div id="klaus-tipp" class="alert alert-success" style="display:none; margin-top: 10px;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Elemente abgreifen
+    const elBudget = document.getElementById('budget');
+    const elJahre = document.getElementById('jahre');
+    const elHuelle = document.getElementById('huelle');
+    const elTechnik = document.getElementById('technik');
+    
+    const valBudget = document.getElementById('budget-val');
+    const valJahre = document.getElementById('jahre-val');
+    
+    const resInvest = document.getElementById('res-invest');
+    const resSavings = document.getElementById('res-savings');
+    const resCo2 = document.getElementById('res-co2');
+    const resAmortisation = document.getElementById('res-amortisation');
+    
+    const alertBox = document.getElementById('budget-alert');
+    const klausTipp = document.getElementById('klaus-tipp');
+
+    // Basiswerte
+    const baseEnergyCost = 4500; 
+
+    function formatNumber(num) {
+        return num.toLocaleString('de-DE');
+    }
+
+    function calculate() {
+        let budget = parseInt(elBudget.value);
+        let jahre = parseInt(elJahre.value);
+        
+        valBudget.innerText = formatNumber(budget);
+        valJahre.innerText = jahre;
+
+        let invest = 0;
+        let savings = 0;
+        let co2 = 0;
+
+        // Logik
+        if(elHuelle.checked) { invest += 30000; savings += 1800; co2 += 3.0; }
+        if(elTechnik.checked) { invest += 25000; savings += 1700; co2 += 4.0; }
+
+        // Ausgeben
+        resInvest.innerText = formatNumber(invest);
+        resSavings.innerText = formatNumber(savings);
+        resCo2.innerText = co2.toFixed(1);
+
+        // Budget Warnung
+        alertBox.style.display = 'block';
+        if(invest > budget) {
+            alertBox.className = 'alert alert-warning';
+            alertBox.innerHTML = `⚠️ <b>Budget überschritten!</b> Die Kosten liegen bei ${formatNumber(invest)} € (Budget: ${formatNumber(budget)} €).`;
+        } else if (invest > 0) {
+            alertBox.className = 'alert alert-success';
+            alertBox.innerHTML = `✅ <b>Passt ins Budget!</b>`;
+        } else {
+            alertBox.style.display = 'none';
+        }
+
+        // Amortisation & Klaus Tipp
+        klausTipp.style.display = 'none';
+        if(invest > 0) {
+            let amortisationTime = invest / savings;
+            resAmortisation.innerText = amortisationTime.toFixed(1) + " Jahren";
             
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1628172828591-64b5956a1b2b?q=80&w=600&auto=format&fit=crop');"></div>
-                <h3>Identität & <br><span>Coming-out</span></h3>
-                <p>Der Weg zu sich selbst kann befreiend, aber auch extrem überfordernd sein. Ich begleite dich bei inneren und äußeren Coming-outs, Fragen zur Geschlechtsidentität (Trans*, Non-Binär) und beim Umgang mit familiären oder gesellschaftlichen Hürden.</p>
-                <a href="identitaet.html" class="cta-button" style="background-color: var(--accent-sage);">Mehr erfahren</a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1516534665133-15777478051a?q=80&w=600&auto=format&fit=crop');"></div>
-                <h3>Queere <br><span>Beziehungen</span></h3>
-                <p>Systemische Paar- und Beziehungsberatung, die über klassische Modelle hinausgeht. Ob Monogamie, Polyamorie oder offene Beziehungskonzepte: Wir brechen toxische Kommunikationsmuster auf und schaffen Raum für echtes Verstehen.</p>
-                <a href="queere-beziehungen.html" class="cta-button" style="background-color: var(--accent-sage);">Mehr erfahren</a>
-            </div>
-
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Beratung Blickwinkel. Systemische Beratung für queere Menschen.</p>
-        <p>Hafenweg, 48155 Münster</p>
-    </footer>
-
-    <script>
-        // Hero-Animation
-        const heroTl = gsap.timeline({defaults: {ease: "power3.out"}});
-        heroTl.to(".box-char .letter", { opacity: 1, y: 0, startAt: {y: 30}, duration: 1, stagger: 0.2 })
-              .to(".pointer-line", { width: "100%", duration: 0.8, stagger: 0.1 }, "-=0.5")
-              .from("#heroHeadline", { opacity: 0, y: 30, duration: 1 }, "-=1")
-              .from("#heroSubtext", { opacity: 0, y: 20, duration: 0.8 }, "-=0.6")
-              .from("#heroCta", { opacity: 0, scale: 0.9, duration: 0.6 }, "-=0.4");
-
-        // Menü-Animation
-        const burgerBtn = document.getElementById('burgerBtn');
-        const overlayMenu = document.getElementById('overlayMenu');
-        let isMenuOpen = false;
-
-        const menuTl = gsap.timeline({ paused: true, defaults: { ease: "power3.inOut" } });
-        menuTl.to(overlayMenu, { duration: 0.6, opacity: 1, visibility: "visible" })
-              .from(".nav-links li", { duration: 0.6, y: 40, opacity: 0, stagger: 0.1 }, "-=0.3")
-              .to(".menu-footer", { duration: 0.4, opacity: 1 }, "-=0.2");
-
-        burgerBtn.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            burgerBtn.classList.toggle('active'); 
-            
-            if (isMenuOpen) {
-                menuTl.play();
-                document.body.style.overflow = "hidden"; 
+            klausTipp.style.display = 'block';
+            if(amortisationTime <= jahre) {
+                klausTipp.innerHTML = "<b>Klaus sagt:</b> <i>Das ist eine echte Hybrid-Lösung. Ökonomisch und ökologisch sinnvoll für diesen Zeitraum!</i>";
+                klausTipp.className = 'alert alert-success';
             } else {
-                menuTl.reverse();
-                document.body.style.overflow = "auto"; 
+                klausTipp.innerHTML = "<b>Klaus sagt:</b> <i>Achtung, das rechnet sich in deinem Zeitrahmen noch nicht komplett. Wir sollten den Fahrplan anpassen.</i>";
+                klausTipp.className = 'alert alert-warning';
             }
-        });
-    </script>
+        } else {
+            resAmortisation.innerText = "-";
+        }
+    }
+
+    // Event Listener anfügen
+    elBudget.addEventListener('input', calculate);
+    elJahre.addEventListener('input', calculate);
+    elHuelle.addEventListener('change', calculate);
+    elTechnik.addEventListener('change', calculate);
+
+    // Initiale Berechnung
+    calculate();
+</script>
+
 </body>
 </html>
