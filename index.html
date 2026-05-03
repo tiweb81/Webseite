@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fettmcfett | Transformation & Mindset</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>fettmcfett | Focaccia - Die neue Art zu leben</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600&family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #e67e22; /* Focaccia Gold/Braun */
-            --dark-color: #1a1a1a;
-            --light-color: #f9f9f9;
-            --accent-color: #d35400;
+            --primary-green: #2b4231; /* Dunkelgrün aus dem Flyer */
+            --gold: #c2a365; /* Goldener Akzent */
+            --light-bg: #f9f8f4; /* Helles Beige für den Hintergrund */
+            --text-dark: #1a1a1a;
+            --white: #ffffff;
         }
 
         * {
@@ -21,13 +22,17 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--light-color);
-            color: var(--dark-color);
+            background-color: var(--light-bg);
+            color: var(--text-dark);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* CSS LOGO fettmcfett */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-green);
+        }
+
+        /* LOGO fettmcfett */
         .logo-container {
             padding: 20px;
             text-align: center;
@@ -35,33 +40,18 @@
 
         .logo-fettmcfett {
             font-family: 'Montserrat', sans-serif;
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -2px;
             display: inline-block;
             position: relative;
-            color: var(--dark-color);
+            color: var(--primary-green);
             cursor: default;
-            user-select: none;
         }
 
         .logo-fettmcfett span {
-            color: var(--primary-color);
-            position: relative;
-        }
-
-        .logo-fettmcfett::after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: var(--primary-color);
-            z-index: -1;
-            transform: skewX(-15deg);
-            opacity: 0.3;
+            color: var(--gold);
         }
 
         /* Navigation */
@@ -69,141 +59,257 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: white;
+            padding: 15px 5%;
+            background: var(--white);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: var(--gold);
+            color: var(--white);
         }
 
         /* Hero Section */
         .hero {
-            height: 80vh;
+            height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=1600') no-repeat center center/cover;
-            color: white;
+            background: linear-gradient(rgba(43, 66, 49, 0.7), rgba(43, 66, 49, 0.7)), 
+                        url('https://images.unsplash.com/photo-1601050638917-3606f548f0ba?auto=format&fit=crop&q=80&w=1600') no-repeat center center/cover;
+            color: var(--white);
             padding: 0 20px;
         }
 
-        .hero-content h1 {
+        .hero h1 {
+            color: var(--white);
             font-size: 4rem;
-            margin-bottom: 20px;
-            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
         }
 
-        .hero-content p {
-            font-size: 1.5rem;
-            max-width: 800px;
+        .hero h2 {
+            color: var(--gold);
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
             margin: 0 auto 30px;
+            font-weight: 300;
         }
 
-        /* Transformation Section */
-        .transformation-section {
-            padding: 80px 10%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
+        /* Intro Text */
+        .intro {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--white);
         }
 
-        .text-box h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--accent-color);
+        .intro h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
         }
 
-        .image-box img {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 20px 20px 0px var(--primary-color);
-        }
-
-        /* Gallery / Focaccia & People */
-        .gallery {
-            padding: 80px 5%;
-            background: #fff;
+        /* Features Grid */
+        .features {
+            padding: 60px 5%;
             text-align: center;
         }
 
-        .gallery h2 {
-            margin-bottom: 40px;
+        .features-title {
             font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-transform: uppercase;
         }
 
-        .grid {
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--gold);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h4 {
+            font-family: 'Inter', sans-serif;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Split Section: Tageszeit & Versprechen */
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--white);
+        }
+
+        .split-left {
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 80px 10%;
+        }
+
+        .split-left h3 {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .time-item {
+            margin-bottom: 30px;
+        }
+
+        .time-item h4 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .split-right {
+            padding: 80px 10%;
+            background: var(--light-bg);
+        }
+
+        .split-right h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .promise-list {
+            list-style: none;
+        }
+
+        .promise-list li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .promise-list li::before {
+            content: '✓';
+            color: var(--primary-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Reviews / The Tina Show */
+        .reviews {
+            padding: 80px 5%;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .reviews h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .reviews .subtitle {
+            margin-bottom: 50px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .review-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 30px;
+            margin-top: 30px;
         }
 
-        .grid-item {
-            position: relative;
-            overflow: hidden;
+        .review-card {
+            background: var(--light-bg);
+            padding: 30px;
             border-radius: 10px;
-            height: 400px;
+            border: 1px solid #e0dcd0;
+            position: relative;
         }
 
-        .grid-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        .stars {
+            color: #d1cbbd; /* Ausgegraute Sterne */
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
         }
 
-        .grid-item:hover img {
-            transform: scale(1.1);
+        .review-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #333;
         }
 
-        .grid-item .overlay {
-            position: absolute;
-            bottom: 0;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            width: 100%;
-            padding: 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .grid-item:hover .overlay {
-            transform: translateY(0);
-        }
-
-        /* CTA Button */
-        .btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: background 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: var(--accent-color);
+        .review-author {
+            font-weight: 600;
+            color: var(--primary-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Footer */
         footer {
-            padding: 50px;
-            background: var(--dark-color);
-            color: white;
+            padding: 40px;
+            background: var(--primary-green);
+            color: var(--white);
             text-align: center;
         }
 
+        .footer-logo {
+            color: var(--white) !important;
+            margin-bottom: 10px;
+        }
+
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .transformation-section { grid-template-columns: 1fr; }
-            .logo-fettmcfett { font-size: 2rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .split-section { grid-template-columns: 1fr; }
+            .split-left, .split-right { padding: 50px 5%; }
         }
     </style>
 </head>
@@ -211,61 +317,132 @@
 
     <nav>
         <div class="logo-fettmcfett">fett<span>mc</span>fett</div>
-        <div>
-            <a href="#transformation" class="btn">Jetzt Starten</a>
-        </div>
+        <a href="https://fettmcfett.de" target="_blank" class="btn">Jetzt starten</a>
     </nav>
 
     <header class="hero">
-        <div class="hero-content">
-            <h1>TRANSFORMATION STARTET IM KOPF</h1>
-            <p>Vergiss Diäten. Erlebe Genuss. Meistere dein Mindset. Die Reise vom Schwergewicht zum Leichtgewicht – mit Herz, Verstand und Focaccia.</p>
-            <a href="#transformation" class="btn">Mehr erfahren</a>
+        <div>
+            <h1>Focaccia</h1>
+            <h2>Die neue Art zu leben</h2>
+            <p>Gleich gewicht. Mehr Genuss.<br>Jeden Tag. Zu jeder Zeit.</p>
         </div>
     </header>
 
-    <section id="transformation" class="transformation-section">
-        <div class="text-box">
-            <h2>Mindset Transformation</h2>
-            <p>Es geht nicht darum, weniger zu essen, sondern besser zu denken. Unsere Methode kombiniert psychologische Ansätze mit realem Lebensgenuss. Wir wissen, wie es ist, mit Gewicht zu kämpfen – und wir wissen, wie man den Kampf beendet.</p>
-            <br>
-            <p><strong>Dein neues Leben wartet. Ohne Verzicht, aber mit Fokus.</strong></p>
-        </div>
-        <div class="image-box">
-            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=800" alt="Mindset Transformation">
+    <section class="intro">
+        <h3>Die Focaccia-Diät ist kein Verzicht.</h3>
+        <p style="font-size: 1.2rem; color: #555;">Sie ist ein Upgrade. Einfach. Natürlich. Unsagbar wirksam.</p>
+    </section>
+
+    <section class="features">
+        <h2 class="features-title">Warum Focaccia jeden Tag<br>auf deinen Tisch gehört</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌱</div>
+                <h4>100% Natürlich</h4>
+                <p>Nur hochwertige Zutaten: Mehl, Wasser, Olivenöl, Hefe, Kräuter, Salz. Nichts Künstliches. Nichts Überflüssiges.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🥖</div>
+                <h4>Leicht & Bekömmlich</h4>
+                <p>Durch lange Teigführung besonders gut verträglich. Für ein angenehmes Bauchgefühl – jeden Tag.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h4>Stärkt dein Immunsystem</h4>
+                <p>Olivenöl, Kräuter und hochwertige Kohlenhydrate unterstützen deinen Körper auf natürliche Weise.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌬️</div>
+                <h4>Freie Atemwege</h4>
+                <p>Traditionelle Zutaten wie Rosmarin und Thymian können Husten und Schnupfen auf natürliche Weise lindern – besser als du denkst.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h4>Unterstützt die Gewichtsreduzierung</h4>
+                <p>Sättigend, aber nicht schwer. Kann Heißhunger reduzieren und deinen Stoffwechsel in Balance halten.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">😊</div>
+                <h4>Gute Laune Garantiert</h4>
+                <p>Weniger Stress, mehr Genuss. Focaccia macht glücklich – und das spürt man!</p>
+            </div>
         </div>
     </section>
 
-    <section class="gallery">
-        <h2>Genuss & Realität</h2>
-        <div class="grid">
-            <div class="grid-item">
-                <img src="https://images.unsplash.com/photo-1601050638917-3606f548f0ba?auto=format&fit=crop&q=80&w=800" alt="Frische Focaccia">
-                <div class="overlay">
-                    <h3>Die Kunst der Focaccia</h3>
-                    <p>Genuss als Teil des Mindsets.</p>
-                </div>
+    <section class="split-section">
+        <div class="split-left">
+            <h3>Zu jeder Tageszeit die perfekte Wahl</h3>
+            
+            <div class="time-item">
+                <h4>☀️ Morgens</h4>
+                <p>Leicht, bekömmlich und voller Energie für einen starken Start.</p>
             </div>
-            <div class="grid-item">
-                <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&q=80&w=800" alt="Gemeinschaft">
-                <div class="overlay">
-                    <h3>Echte Menschen</h3>
-                    <p>Keine Fake-Models. Nur echte Transformation.</p>
-                </div>
+            
+            <div class="time-item">
+                <h4>🌤️ Mittags</h4>
+                <p>Sättigend, nahrhaft und hält dich stabil durch den Tag.</p>
             </div>
-            <div class="grid-item">
-                <img src="https://images.unsplash.com/photo-1547516508-4c1f9c7c4ec3?auto=format&fit=crop&q=80&w=800" alt="Vorbereitung">
-                <div class="overlay">
-                    <h3>Der Weg zum Ziel</h3>
-                    <p>Jeder Schritt zählt.</p>
-                </div>
+            
+            <div class="time-item">
+                <h4>🌙 Abends</h4>
+                <p>Leicht verdaulich und perfekt für ein gutes Gefühl am Abend.</p>
+            </div>
+        </div>
+
+        <div class="split-right">
+            <h3>Die Gesundheitsversprechen der Focaccia-Diät</h3>
+            <ul class="promise-list">
+                <li>Kann Husten & Schnupfen lindern – besser als Sinupret & Co. (laut Anwendern)</li>
+                <li>Stärkt das Immunsystem auf natürliche Weise</li>
+                <li>Fördert Verdauung und Darmgesundheit</li>
+                <li>Hilft beim Fettabbau, ohne zu hungern</li>
+                <li>Schenkt mehr Energie & mentale Klarheit</li>
+                <li>Macht einfach glücklich – jeden Tag!</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="reviews">
+        <h2>Bewertungen</h2>
+        <p class="subtitle">Das sagen unsere begeisterten Anwender</p>
+        
+        <div class="review-grid">
+            <div class="review-card">
+                <div class="stars">☆☆☆☆☆</div>
+                <p class="review-text">"Seid ich das gesehen habe, will ich gar nichts mehr essen... Wenn ich 0 Sterne geben könnte würde ich 0 geben."</p>
+                <p class="review-author">– Tina</p>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">☆☆☆☆☆</div>
+                <p class="review-text">"Seitdem ich dieses Rezept probiert habe, habe ich komplett aufgehört zu essen. Mein Appetit ist wie weggeblasen. Absolut furchtbar."</p>
+                <p class="review-author">– Tina</p>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">☆☆☆☆☆</div>
+                <p class="review-text">"Ich dachte, es wird besser, wenn ich es nochmal probiere. Wurde es nicht. Ich habe immer noch keinen Hunger. Eine absolute Katastrophe."</p>
+                <p class="review-author">– Tina</p>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">☆☆☆☆☆</div>
+                <p class="review-text">"Schon wieder ich. Mein Kühlschrank ist voll, aber diese sogenannte Focaccia-Diät hat mich traumatisiert. Null."</p>
+                <p class="review-author">– Tina</p>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">☆☆☆☆☆</div>
+                <p class="review-text">"Ich habe den Flyer heute nur zufällig wieder angeschaut und bin satt für den Rest meines Lebens. Wenn Minussterne möglich wären, gäbe es die."</p>
+                <p class="review-author">– Tina</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="logo-fettmcfett" style="color: white;">fett<span>mc</span>fett</div>
-        <p style="margin-top: 20px;">&copy; 2024 Transformation Mindset. Alle Rechte vorbehalten.</p>
+        <div class="logo-fettmcfett footer-logo">fett<span>mc</span>fett</div>
+        <p>Mehr Genuss. Mehr Gesundheit. Mehr Du.</p>
+        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.7;">&copy; 2024 fettmcfett.de</p>
     </footer>
 
 </body>
