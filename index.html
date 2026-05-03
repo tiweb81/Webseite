@@ -3,197 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grün-West Energie Simulator</title>
+    <title>fettmcfett | Transformation & Mindset</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #008f39; /* Grün-West Grün */
-            --bg-color: #f4f7f6;
-            --text-dark: #333;
-            --box-bg: #ffffff;
+            --primary-color: #e67e22; /* Focaccia Gold/Braun */
+            --dark-color: #1a1a1a;
+            --light-color: #f9f9f9;
+            --accent-color: #d35400;
         }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
+
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* CSS LOGO fettmcfett */
+        .logo-container {
             padding: 20px;
+            text-align: center;
         }
-        .simulator-container {
+
+        .logo-fettmcfett {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            display: inline-block;
+            position: relative;
+            color: var(--dark-color);
+            cursor: default;
+            user-select: none;
+        }
+
+        .logo-fettmcfett span {
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .logo-fettmcfett::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--primary-color);
+            z-index: -1;
+            transform: skewX(-15deg);
+            opacity: 0.3;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=1600') no-repeat center center/cover;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
             max-width: 800px;
-            margin: 0 auto;
-            background: var(--box-bg);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 0 auto 30px;
         }
-        h2, h3 { color: var(--primary); }
-        .grid {
+
+        /* Transformation Section */
+        .transformation-section {
+            padding: 80px 10%;
             display: grid;
             grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .text-box h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .image-box img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 20px 20px 0px var(--primary-color);
+        }
+
+        /* Gallery / Focaccia & People */
+        .gallery {
+            padding: 80px 5%;
+            background: #fff;
+            text-align: center;
+        }
+
+        .gallery h2 {
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
-        @media (max-width: 600px) {
-            .grid { grid-template-columns: 1fr; }
+
+        .grid-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 400px;
         }
-        .control-group {
-            margin-bottom: 20px;
-            padding: 15px;
-            background: #f9f9f9;
-            border-radius: 8px;
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-        label { display: block; font-weight: bold; margin-bottom: 5px; }
-        input[type="range"] { width: 100%; margin-bottom: 10px; }
-        .checkbox-group { margin-top: 10px; }
-        .checkbox-group label { font-weight: normal; cursor: pointer; }
-        
-        .results {
-            background: #eaf6ea;
+
+        .grid-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .grid-item .overlay {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            width: 100%;
             padding: 20px;
-            border-radius: 8px;
-            border-left: 5px solid var(--primary);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
         }
-        .metric {
-            font-size: 1.2em;
-            margin: 10px 0;
+
+        .grid-item:hover .overlay {
+            transform: translateY(0);
         }
-        .metric span { font-weight: bold; color: var(--primary); }
-        
-        .alert {
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 5px;
-            display: none; /* Versteckt bis gebraucht */
+
+        /* CTA Button */
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
         }
-        .alert-warning { background: #ffebee; color: #c62828; border-left: 5px solid #c62828; }
-        .alert-success { background: #e8f5e9; color: #2e7d32; border-left: 5px solid #2e7d32; }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px;
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .transformation-section { grid-template-columns: 1fr; }
+            .logo-fettmcfett { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
 
-<div class="simulator-container">
-    <h2>🏡 Grün-West Sanierungs-Fahrplan</h2>
-    <p>Simuliere hier deine hybride Lösung aus Ökonomie und Ökologie für die nächsten Jahre.</p>
-
-    <div class="grid">
+    <nav>
+        <div class="logo-fettmcfett">fett<span>mc</span>fett</div>
         <div>
-            <div class="control-group">
-                <label for="budget">Verfügbares Budget: <span id="budget-val">50.000</span> €</label>
-                <input type="range" id="budget" min="10000" max="100000" step="5000" value="50000">
-                
-                <label for="jahre" style="margin-top:15px;">Betrachtungszeitraum: <span id="jahre-val">20</span> Jahre</label>
-                <input type="range" id="jahre" min="5" max="30" step="1" value="20">
-            </div>
+            <a href="#transformation" class="btn">Jetzt Starten</a>
+        </div>
+    </nav>
 
-            <div class="control-group">
-                <h3>Maßnahmen</h3>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" id="huelle"> 🧱 Thermische Hülle (Dämmung/Fenster)</label><br>
-                    <label><input type="checkbox" id="technik"> ☀️ Anlagentechnik (Wärmepumpe/Solar)</label>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>TRANSFORMATION STARTET IM KOPF</h1>
+            <p>Vergiss Diäten. Erlebe Genuss. Meistere dein Mindset. Die Reise vom Schwergewicht zum Leichtgewicht – mit Herz, Verstand und Focaccia.</p>
+            <a href="#transformation" class="btn">Mehr erfahren</a>
+        </div>
+    </header>
+
+    <section id="transformation" class="transformation-section">
+        <div class="text-box">
+            <h2>Mindset Transformation</h2>
+            <p>Es geht nicht darum, weniger zu essen, sondern besser zu denken. Unsere Methode kombiniert psychologische Ansätze mit realem Lebensgenuss. Wir wissen, wie es ist, mit Gewicht zu kämpfen – und wir wissen, wie man den Kampf beendet.</p>
+            <br>
+            <p><strong>Dein neues Leben wartet. Ohne Verzicht, aber mit Fokus.</strong></p>
+        </div>
+        <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=800" alt="Mindset Transformation">
+        </div>
+    </section>
+
+    <section class="gallery">
+        <h2>Genuss & Realität</h2>
+        <div class="grid">
+            <div class="grid-item">
+                <img src="https://images.unsplash.com/photo-1601050638917-3606f548f0ba?auto=format&fit=crop&q=80&w=800" alt="Frische Focaccia">
+                <div class="overlay">
+                    <h3>Die Kunst der Focaccia</h3>
+                    <p>Genuss als Teil des Mindsets.</p>
+                </div>
+            </div>
+            <div class="grid-item">
+                <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&q=80&w=800" alt="Gemeinschaft">
+                <div class="overlay">
+                    <h3>Echte Menschen</h3>
+                    <p>Keine Fake-Models. Nur echte Transformation.</p>
+                </div>
+            </div>
+            <div class="grid-item">
+                <img src="https://images.unsplash.com/photo-1547516508-4c1f9c7c4ec3?auto=format&fit=crop&q=80&w=800" alt="Vorbereitung">
+                <div class="overlay">
+                    <h3>Der Weg zum Ziel</h3>
+                    <p>Jeder Schritt zählt.</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div>
-            <div class="results">
-                <h3>📊 Deine Ergebnisse</h3>
-                <div class="metric">Investition: <span id="res-invest">0</span> €</div>
-                <div class="metric">Ersparnis pro Jahr: <span id="res-savings">0</span> €</div>
-                <div class="metric">CO2-Reduktion: <span id="res-co2">0</span> t / Jahr</div>
-                <hr>
-                <div class="metric">Amortisation in: <span id="res-amortisation">-</span></div>
-            </div>
-
-            <div id="budget-alert" class="alert"></div>
-            <div id="klaus-tipp" class="alert alert-success" style="display:none; margin-top: 10px;"></div>
-        </div>
-    </div>
-</div>
-
-<script>
-    // Elemente abgreifen
-    const elBudget = document.getElementById('budget');
-    const elJahre = document.getElementById('jahre');
-    const elHuelle = document.getElementById('huelle');
-    const elTechnik = document.getElementById('technik');
-    
-    const valBudget = document.getElementById('budget-val');
-    const valJahre = document.getElementById('jahre-val');
-    
-    const resInvest = document.getElementById('res-invest');
-    const resSavings = document.getElementById('res-savings');
-    const resCo2 = document.getElementById('res-co2');
-    const resAmortisation = document.getElementById('res-amortisation');
-    
-    const alertBox = document.getElementById('budget-alert');
-    const klausTipp = document.getElementById('klaus-tipp');
-
-    // Basiswerte
-    const baseEnergyCost = 4500; 
-
-    function formatNumber(num) {
-        return num.toLocaleString('de-DE');
-    }
-
-    function calculate() {
-        let budget = parseInt(elBudget.value);
-        let jahre = parseInt(elJahre.value);
-        
-        valBudget.innerText = formatNumber(budget);
-        valJahre.innerText = jahre;
-
-        let invest = 0;
-        let savings = 0;
-        let co2 = 0;
-
-        // Logik
-        if(elHuelle.checked) { invest += 30000; savings += 1800; co2 += 3.0; }
-        if(elTechnik.checked) { invest += 25000; savings += 1700; co2 += 4.0; }
-
-        // Ausgeben
-        resInvest.innerText = formatNumber(invest);
-        resSavings.innerText = formatNumber(savings);
-        resCo2.innerText = co2.toFixed(1);
-
-        // Budget Warnung
-        alertBox.style.display = 'block';
-        if(invest > budget) {
-            alertBox.className = 'alert alert-warning';
-            alertBox.innerHTML = `⚠️ <b>Budget überschritten!</b> Die Kosten liegen bei ${formatNumber(invest)} € (Budget: ${formatNumber(budget)} €).`;
-        } else if (invest > 0) {
-            alertBox.className = 'alert alert-success';
-            alertBox.innerHTML = `✅ <b>Passt ins Budget!</b>`;
-        } else {
-            alertBox.style.display = 'none';
-        }
-
-        // Amortisation & Klaus Tipp
-        klausTipp.style.display = 'none';
-        if(invest > 0) {
-            let amortisationTime = invest / savings;
-            resAmortisation.innerText = amortisationTime.toFixed(1) + " Jahren";
-            
-            klausTipp.style.display = 'block';
-            if(amortisationTime <= jahre) {
-                klausTipp.innerHTML = "<b>Claudius sagt:</b> <i>Das ist eine echte Hybrid-Lösung. Ökonomisch und ökologisch sinnvoll für diesen Zeitraum!</i>";
-                klausTipp.className = 'alert alert-success';
-            } else {
-                klausTipp.innerHTML = "<b>Claudius sagt:</b> <i>Achtung, das rechnet sich in deinem Zeitrahmen noch nicht komplett. Wir sollten den Fahrplan anpassen.</i>";
-                klausTipp.className = 'alert alert-warning';
-            }
-        } else {
-            resAmortisation.innerText = "-";
-        }
-    }
-
-    // Event Listener anfügen
-    elBudget.addEventListener('input', calculate);
-    elJahre.addEventListener('input', calculate);
-    elHuelle.addEventListener('change', calculate);
-    elTechnik.addEventListener('change', calculate);
-
-    // Initiale Berechnung
-    calculate();
-</script>
+    <footer>
+        <div class="logo-fettmcfett" style="color: white;">fett<span>mc</span>fett</div>
+        <p style="margin-top: 20px;">&copy; 2024 Transformation Mindset. Alle Rechte vorbehalten.</p>
+    </footer>
 
 </body>
 </html>
